@@ -1,7 +1,7 @@
 {
-  "name": "boilermaker",
+  "name": "jello",
   "version": "1.0.0",
-  "description": "Some boilerplate code to get you started - get shakin'!",
+  "description": "A collaborative project management application.",
   "engines": {
     "node": ">= 7.0.0"
   },
@@ -34,7 +34,7 @@
       "git add"
     ]
   },
-  "author": "Fullstack Academy of Code",
+  "author": "Jeremy Henrard",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.15.3",

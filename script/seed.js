@@ -1,7 +1,13 @@
 'use strict'
 
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const {
+  User,
+  Board,
+  List,
+  ListItem,
+  BoardAssignment
+} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -11,8 +17,37 @@ async function seed() {
     User.create({email: 'cody@email.com', password: '123'}),
     User.create({email: 'murphy@email.com', password: '123'})
   ])
-
   console.log(`seeded ${users.length} users`)
+
+  const boards = await Promise.all([
+    Board.create({name: 'test board'}),
+    Board.create({name: 'test board 2'})
+  ])
+  console.log(`seeded ${boards.length} boards`)
+
+  const boardAssignments = await Promise.all([
+    BoardAssignment.create({userId: 1, boardId: 1, owner: false}),
+    BoardAssignment.create({userId: 2, boardId: 1, owner: false}),
+    BoardAssignment.create({userId: 2, boardId: 2, owner: true})
+  ])
+  console.log(`seeded ${boardAssignments.length} board assignments`)
+
+  const lists = await Promise.all([
+    List.create({title: 'test list 1', boardId: 1}),
+    List.create({title: 'test list 2', boardId: 1})
+  ])
+  console.log(`seeded ${lists.length} lists`)
+
+  const listItems = await Promise.all([
+    ListItem.create({title: 'item 1', description: 'description', listId: 1}),
+    ListItem.create({
+      title: 'item 2',
+      description: 'another description',
+      listId: 2
+    })
+  ])
+  console.log(`seeded ${listItems.length} list items`)
+
   console.log(`seeded successfully`)
 }
 
