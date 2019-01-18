@@ -52,12 +52,12 @@ class ListItemContainer extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    listItems: state.boardListItems
-  }
-}
+// const mapStateToProps = state => {
+//   return {
+//     listItems: state.boardListItems
+//   }
+// }
 
 export default DropTarget('ListItem', containerTarget, collect)(
-  connectRedux(mapStateToProps)(ListItemContainer)
+  ListItemContainer
 )
