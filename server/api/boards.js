@@ -29,3 +29,17 @@ router.get('/:boardId', async (req, res, next) => {
     next(error)
   }
 })
+
+router.get('/:boardId/lists', async (req, res, next) => {
+  try {
+    const lists = await List.findAll({
+      where: {boardId: req.params.boardId},
+      include: {
+        model: ListItem
+      }
+    })
+    res.json(lists)
+  } catch (error) {
+    next(error)
+  }
+})

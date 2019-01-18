@@ -3,8 +3,9 @@ import {DragSource} from 'react-dnd'
 
 const listSource = {
   beginDrag(props) {
+    console.log('begin drag props: ', props)
     return {
-      id: props.id
+      list: props.list
     }
   }
 }

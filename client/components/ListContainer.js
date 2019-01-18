@@ -2,14 +2,22 @@ import React from 'react'
 import {connect as connectRedux} from 'react-redux'
 import {DropTarget} from 'react-dnd'
 import {ListCard} from '.'
+import {updateListOrder} from '../store/boardLists'
+import store from '../store'
 
 const containerTarget = {
   drop(props, monitor) {
-    console.log('drop props', props)
+    const lists = store.getState().boardLists
+    const existingList = lists.reduce((final, elem) => {
+      if (elem.order === props.position) {
+        return elem
+      }
+      return final
+    }, {})
+    const from = monitor.getItem().list.order
 
-    // move current ListCard to source ListContainer -- change current ListCard order
-    // drop dragged ListCard into this ListContainer -- change dragged ListCard order
-    // give lists an order number, keep containers sequential and render lists based on their order number
+    store.dispatch(updateListOrder(monitor.getItem().list, props.position))
+    store.dispatch(updateListOrder(existingList, from))
   },
   canDrop(props, monitor) {
     return true
@@ -44,7 +52,7 @@ class ListContainer extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    lists: state.singleBoard.lists
+    lists: state.boardLists
   }
 }
 
