@@ -5,8 +5,9 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import singleBoard from './singleBoard'
 import boardLists from './boardLists'
+import boardListItems from './boardListItems'
 
-const reducer = combineReducers({user, singleBoard, boardLists})
+const reducer = combineReducers({user, singleBoard, boardLists, boardListItems})
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )

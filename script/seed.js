@@ -38,14 +38,33 @@ async function seed() {
     List.create({title: 'this is another list', order: 3, boardId: 1}),
     List.create({title: 'lets make one more', order: 4, boardId: 1})
   ])
+  await List.create({title: 'fifth list', order: 1, boardId: 2})
   console.log(`seeded ${lists.length} lists`)
 
   const listItems = await Promise.all([
-    ListItem.create({title: 'item 1', description: 'description', listId: 1}),
+    ListItem.create({
+      title: 'item 1',
+      description: 'description',
+      listId: 1,
+      order: 1
+    }),
     ListItem.create({
       title: 'item 2',
       description: 'another description',
-      listId: 2
+      listId: 1,
+      order: 2
+    }),
+    ListItem.create({
+      title: 'item 3',
+      description: 'item for a second list',
+      listId: 2,
+      order: 1
+    }),
+    ListItem.create({
+      title: 'item 3',
+      description: 'this is the third seeded item',
+      listId: 5,
+      order: 1
     })
   ])
   console.log(`seeded ${listItems.length} list items`)
