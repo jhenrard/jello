@@ -33,8 +33,10 @@ async function seed() {
   console.log(`seeded ${boardAssignments.length} board assignments`)
 
   const lists = await Promise.all([
-    List.create({title: 'test list 1', boardId: 1}),
-    List.create({title: 'test list 2', boardId: 1})
+    List.create({title: 'test list', order: 1, boardId: 1}),
+    List.create({title: 'test list 2', order: 2, boardId: 1}),
+    List.create({title: 'this is another list', order: 3, boardId: 1}),
+    List.create({title: 'lets make one more', order: 4, boardId: 1})
   ])
   console.log(`seeded ${lists.length} lists`)
 

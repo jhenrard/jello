@@ -20,6 +20,29 @@ form div {
   display: inline-block;
 }
 
+.board-container {
+  display: flex;
+  border: 5px solid black;
+}
+
 .list-card {
-  margin: 100px;
+  display: flex;
+  border: 5px solid black;
+  cursor: grab;
+}
+
+.list-card-hover {
+  opacity: 0.5;
+  display: flex;
+  border: 5px solid black;
+}
+
+.list-container {
+  display: flex;
+  border: 5px solid black;
+  margin: 10px;
+}
+
+.list {
+  margin: 30px;
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchBoard} from '../store/singleBoard'
-import {ListCard} from '.'
+import {ListContainer} from '.'
 
 class SingleBoard extends React.Component {
   componentDidMount() {
@@ -10,14 +10,14 @@ class SingleBoard extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="board-container">
         {this.props.board.name}
         <p />
         {this.props.board.lists &&
-          this.props.board.lists.map(item => {
+          this.props.board.lists.map((list, index) => {
             return (
-              <div key={item.id} className="list-card">
-                <ListCard list={item} />
+              <div key={list.id} className="list-container">
+                <ListContainer position={index + 1} />
               </div>
             )
           })}
