@@ -14,7 +14,6 @@ const containerTarget = {
       }
       return final
     }, {})
-    console.log('list container receiving item: ', monitor.getItem())
     const from = monitor.getItem().list.order
 
     store.dispatch(updateListOrder(monitor.getItem().list, props.position))

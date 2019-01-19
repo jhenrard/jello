@@ -1,5 +1,4 @@
 import React from 'react'
-import {connect as connectRedux} from 'react-redux'
 import {DropTarget} from 'react-dnd'
 import {ListItem} from '.'
 import {updateListItemOrder} from '../store/boardListItems'
@@ -21,12 +20,6 @@ const containerTarget = {
       item => item.listId === props.listId
     ).length
     const sourceListItems = listItems.filter(item => item.listId === fromList)
-
-    // console.log('monitor getitem: ', monitor.getItem())
-    // console.log('existing list item: ', existingListItem)
-    // console.log('from order in current list: ', fromOrderInList)
-    // console.log('to list argument: ', toList)
-    console.log('source list items: ', sourceListItems)
 
     if (existingListItem.id && existingListItem.listId === fromList) {
       // swap spots if same list
@@ -61,15 +54,6 @@ const containerTarget = {
         }
       }
     }
-
-    // // update item already in the container to move down
-    // if (existingListItem.id && existingListItem.listId === fromList) {
-    //   // if same list, move existing item to incoming's prior location
-    // }
-    // else {
-    //   // if target list is different and not empty, shift existing item to bottom. refactor later to shift all down
-    //   store.dispatch(updateListItemOrder(existingListItem, listItemsLength + 1, toList))
-    // }
   },
   canDrop(props, monitor) {
     return true
@@ -95,23 +79,14 @@ class ListItemContainer extends React.Component {
         }
         return final
       }, {})
-    // console.log('listitemcontainer props: ', this.props)
 
     return this.props.connectDropTarget(
       <div className={styles}>
-        {/* <p>Item Title: {listItem.title}</p>
-        <p>Item Description: {listItem.description}</p> */}
         <ListItem listItem={listItem} />
       </div>
     )
   }
 }
-
-// const mapStateToProps = state => {
-//   return {
-//     listItems: state.boardListItems
-//   }
-// }
 
 export default DropTarget('ListItem', containerTarget, collect)(
   ListItemContainer

@@ -6,7 +6,7 @@ import AddListItem from './AddListItem'
 
 const listSource = {
   beginDrag(props) {
-    console.log('begin drag props: ', props)
+    // console.log('begin drag props: ', props)
     return {
       list: props.list
     }
@@ -23,16 +23,10 @@ const collect = (connect, monitor) => {
 class List extends React.Component {
   render() {
     const {connectDragSource} = this.props
-    // console.log('ListCard props: ', this.props)
-    // console.log(
-    //   'ListCard filtered items: ',
-    //   this.props.listItems.filter(item => item.listId === this.props.list.id)
-    // )
-
     const listItems = this.props.listItems.filter(
       item => item.listId === this.props.list.id
     )
-    // console.log('List props: ', this.props.list)
+
     return connectDragSource(
       <div className="list">
         <h3>List Title: {this.props.list.title}</h3>

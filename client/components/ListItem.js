@@ -3,7 +3,6 @@ import {DragSource} from 'react-dnd'
 
 const listItemSource = {
   beginDrag(props) {
-    console.log('begin drag props: ', props)
     return {
       listItem: props.listItem
     }
@@ -20,7 +19,7 @@ const collect = (connect, monitor) => {
 class ListItem extends React.Component {
   render() {
     const {connectDragSource} = this.props
-    // console.log('ListItem props: ', this.props)
+
     return connectDragSource(
       <div className="list">
         {this.props.listItem && (

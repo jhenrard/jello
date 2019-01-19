@@ -4,6 +4,7 @@ import axios from 'axios'
 
 const GOT_BOARD_LISTS = 'GOT_BOARD_LISTS'
 const UPDATE_LIST = 'UPDATE_LIST'
+const ADD_LIST = 'ADD_LIST'
 
 // action creators
 
@@ -17,6 +18,13 @@ const gotBoardLists = lists => {
 const updateList = list => {
   return {
     type: UPDATE_LIST,
+    list
+  }
+}
+
+const addBoardList = list => {
+  return {
+    type: ADD_LIST,
     list
   }
 }
@@ -41,6 +49,16 @@ export const updateListOrder = (incomingList, to) => {
   }
 }
 
+export const addList = (list, boardId, order) => {
+  return async dispatch => {
+    list.boardId = boardId
+    list.order = order
+    const res = await axios.post(`/api/lists`, list)
+    const {data: newList} = res
+    dispatch(addBoardList(newList))
+  }
+}
+
 // board lists reducer
 
 export default function(state = [], action) {
@@ -55,6 +73,8 @@ export default function(state = [], action) {
           return list
         }
       })
+    case ADD_LIST:
+      return [...state, action.list]
     default:
       return state
   }

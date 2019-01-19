@@ -4,6 +4,7 @@ import {fetchBoard} from '../store/singleBoard'
 import {ListContainer} from '.'
 import {fetchBoardLists} from '../store/boardLists'
 import {fetchListItems} from '../store/boardListItems'
+import AddList from './AddList'
 
 class SingleBoard extends React.Component {
   componentDidMount() {
@@ -14,25 +15,28 @@ class SingleBoard extends React.Component {
   }
 
   render() {
-    // const lists = []
-    // for (let key in this.props.lists) {
-    //   if (this.props.lists.hasOwnProperty(key)) {
-    //     lists.push(this.props.lists[key])
-    //   }
-    // }
-
     return (
-      <div className="board-container">
-        {this.props.board.name}
-        <p />
-        {this.props.lists &&
-          this.props.lists.map((list, index) => {
-            return (
-              <div key={list.id}>
-                <ListContainer position={index + 1} />
-              </div>
-            )
-          })}
+      <div>
+        {this.props.board && (
+          <div className="board-container">
+            {this.props.board.name}
+            <p />
+            {this.props.lists &&
+              this.props.lists.map((list, index) => {
+                return (
+                  <div key={list.id}>
+                    <ListContainer position={index + 1} />
+                  </div>
+                )
+              })}
+            <div>
+              <AddList
+                numOfLists={this.props.lists.length}
+                boardId={this.props.board.id}
+              />
+            </div>
+          </div>
+        )}
       </div>
     )
   }
