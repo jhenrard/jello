@@ -14,13 +14,62 @@ const containerTarget = {
       }
       return final
     }, {})
-    const from = monitor.getItem().listItem.order
-    console.log('existing list item: ', existingListItem)
-    console.log('from: ', from)
-    store.dispatch(
-      updateListItemOrder(monitor.getItem().listItem, props.position)
-    )
-    store.dispatch(updateListItemOrder(existingListItem, from))
+    const fromOrderInList = monitor.getItem().listItem.order
+    const fromList = monitor.getItem().listItem.listId
+    const toList = props.listId
+    const listItemsLength = listItems.filter(
+      item => item.listId === props.listId
+    ).length
+    const sourceListItems = listItems.filter(item => item.listId === fromList)
+
+    // console.log('monitor getitem: ', monitor.getItem())
+    // console.log('existing list item: ', existingListItem)
+    // console.log('from order in current list: ', fromOrderInList)
+    // console.log('to list argument: ', toList)
+    console.log('source list items: ', sourceListItems)
+
+    if (existingListItem.id && existingListItem.listId === fromList) {
+      // swap spots if same list
+      store.dispatch(
+        updateListItemOrder(monitor.getItem().listItem, props.position, toList)
+      )
+      store.dispatch(
+        updateListItemOrder(existingListItem, fromOrderInList, fromList)
+      )
+    } else {
+      // drop at end of target list
+      store.dispatch(
+        updateListItemOrder(
+          monitor.getItem().listItem,
+          listItemsLength + 1,
+          toList
+        )
+      )
+      // reorder remaining items in source list -- REFACTOR THIS
+      for (let i = 0; i < sourceListItems.length; i++) {
+        if (
+          sourceListItems[i].order >= fromOrderInList &&
+          sourceListItems[i].id !== monitor.getItem().listItem.id
+        ) {
+          store.dispatch(
+            updateListItemOrder(
+              sourceListItems[i],
+              sourceListItems[i].order - 1,
+              fromList
+            )
+          )
+        }
+      }
+    }
+
+    // // update item already in the container to move down
+    // if (existingListItem.id && existingListItem.listId === fromList) {
+    //   // if same list, move existing item to incoming's prior location
+    // }
+    // else {
+    //   // if target list is different and not empty, shift existing item to bottom. refactor later to shift all down
+    //   store.dispatch(updateListItemOrder(existingListItem, listItemsLength + 1, toList))
+    // }
   },
   canDrop(props, monitor) {
     return true

@@ -32,7 +32,7 @@ class List extends React.Component {
     const listItems = this.props.listItems.filter(
       item => item.listId === this.props.list.id
     )
-    console.log('List props: ', this.props.list)
+    // console.log('List props: ', this.props.list)
     return connectDragSource(
       <div className="list">
         <h3>List Title: {this.props.list.title}</h3>
@@ -54,7 +54,9 @@ class List extends React.Component {
             )
           })}
           <div>
-            <ListItemContainer position={listItems.length} />
+            {!listItems.length && (
+              <ListItemContainer position={1} listId={this.props.list.id} />
+            )}
           </div>
         </div>
       </div>

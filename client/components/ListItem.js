@@ -20,7 +20,7 @@ const collect = (connect, monitor) => {
 class ListItem extends React.Component {
   render() {
     const {connectDragSource} = this.props
-    console.log('ListItem props: ', this.props)
+    // console.log('ListItem props: ', this.props)
     return connectDragSource(
       <div className="list">
         {this.props.listItem && (
