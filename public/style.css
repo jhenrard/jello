@@ -22,12 +22,13 @@ form div {
 
 .board-container {
   display: flex;
-  border: 5px solid black;
+  /* border: 5px solid black; */
 }
 
 .list-card {
   /* display: flex; */
   border: 5px solid black;
+  margin: 10px;
 }
 
 .list-card-hover {

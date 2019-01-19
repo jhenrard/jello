@@ -61,8 +61,8 @@ async function seed() {
       order: 1
     }),
     ListItem.create({
-      title: 'item 3',
-      description: 'this is the third seeded item',
+      title: 'item 4',
+      description: 'this is the third seeded item in list 1',
       listId: 5,
       order: 1
     })

@@ -9,12 +9,13 @@ const containerTarget = {
   drop(props, monitor) {
     const listItems = store.getState().boardListItems
     const existingListItem = listItems.reduce((final, elem) => {
-      if (elem.order === props.position) {
+      if (elem.order === props.position && elem.listId === props.listId) {
         return elem
       }
       return final
     }, {})
     const from = monitor.getItem().listItem.order
+    console.log('existing list item: ', existingListItem)
     console.log('from: ', from)
     store.dispatch(
       updateListItemOrder(monitor.getItem().listItem, props.position)
@@ -36,7 +37,7 @@ function collect(connect, monitor) {
 
 class ListItemContainer extends React.Component {
   render() {
-    const styles = this.props.isOver ? 'list-card-hover' : 'list-card'
+    const styles = this.props.isOver ? 'list-card-hover' : 'list-item'
     const listItem =
       this.props.listItems &&
       this.props.listItems.reduce((final, elem) => {
@@ -45,7 +46,7 @@ class ListItemContainer extends React.Component {
         }
         return final
       }, {})
-    console.log('listitemcontainer props: ', this.props)
+    // console.log('listitemcontainer props: ', this.props)
 
     return this.props.connectDropTarget(
       <div className={styles}>

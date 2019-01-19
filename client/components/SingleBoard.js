@@ -28,7 +28,7 @@ class SingleBoard extends React.Component {
         {this.props.lists &&
           this.props.lists.map((list, index) => {
             return (
-              <div key={list.id} className="list-container">
+              <div key={list.id}>
                 <ListContainer position={index + 1} />
               </div>
             )

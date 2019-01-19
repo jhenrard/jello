@@ -22,7 +22,7 @@ const collect = (connect, monitor) => {
 class ListCard extends React.Component {
   render() {
     const {connectDragSource} = this.props
-    console.log('ListCard props: ', this.props)
+    // console.log('ListCard props: ', this.props)
     console.log(
       'ListCard filtered items: ',
       this.props.listItems.filter(item => item.listId === this.props.list.id)
@@ -39,19 +39,19 @@ class ListCard extends React.Component {
         <div>
           {listItems.map((item, index, filteredArray) => {
             return (
-              <div key={item.id} className="list-container">
+              <div key={item.id}>
                 <ListItemContainer
                   position={index + 1}
                   listItems={filteredArray}
+                  listId={this.props.list.id}
                 />
               </div>
             )
           })}
-          <div className="list-item">
+          <div>
             <ListItemContainer position={listItems.length} />
           </div>
         </div>
-        {/* <ListItemContainer /> */}
       </div>
     )
   }
