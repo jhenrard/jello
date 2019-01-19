@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect as connectRedux} from 'react-redux'
 import {DropTarget} from 'react-dnd'
-import {ListCard} from '.'
+import {List} from '.'
 import {updateListOrder} from '../store/boardLists'
 import store from '../store'
 
@@ -45,7 +45,7 @@ class ListContainer extends React.Component {
 
     return this.props.connectDropTarget(
       <div className={styles}>
-        <ListCard list={list} />
+        <List list={list} />
       </div>
     )
   }

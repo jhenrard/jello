@@ -4,6 +4,7 @@ import axios from 'axios'
 
 const GOT_BOARD_LIST_ITEMS = 'GOT_BOARD_LIST_ITEMS'
 const UPDATE_LIST_ITEM = 'UPDATE_LIST_ITEM'
+const ADD_LIST_ITEM = 'ADD_LIST_ITEM'
 
 // action creators
 
@@ -11,6 +12,13 @@ const gotBoardListItems = listItems => {
   return {
     type: GOT_BOARD_LIST_ITEMS,
     listItems
+  }
+}
+
+const addBoardListItem = listItem => {
+  return {
+    type: ADD_LIST_ITEM,
+    listItem
   }
 }
 
@@ -42,6 +50,19 @@ export const updateListItemOrder = (incomingListItem, to) => {
   }
 }
 
+export const addListItem = (listItem, listId, order) => {
+  return async dispatch => {
+    listItem = {...listItem}
+    listItem.listId = listId
+    listItem.order = order
+    console.log('listItem (req.body) :', listItem)
+    console.log('order passed to thunk: ', order)
+    const res = await axios.post(`/api/list-items`, listItem)
+    const {data: newListItem} = res
+    dispatch(addBoardListItem(newListItem))
+  }
+}
+
 // board list items reducer
 
 export default function(state = [], action) {
@@ -56,6 +77,8 @@ export default function(state = [], action) {
           return item
         }
       })
+    case ADD_LIST_ITEM:
+      return [...state, action.listItem]
     default:
       return state
   }

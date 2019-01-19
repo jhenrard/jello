@@ -15,3 +15,12 @@ router.put('/:itemId', async (req, res, next) => {
     next(error)
   }
 })
+
+router.post('/', async (req, res, next) => {
+  try {
+    const newListItem = await ListItem.create(req.body, {returning: true})
+    res.json(newListItem)
+  } catch (error) {
+    next(error)
+  }
+})
