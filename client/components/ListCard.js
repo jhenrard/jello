@@ -27,23 +27,29 @@ class ListCard extends React.Component {
       'ListCard filtered items: ',
       this.props.listItems.filter(item => item.listId === this.props.list.id)
     )
+
+    const listItems = this.props.listItems.filter(
+      item => item.listId === this.props.list.id
+    )
+
     return connectDragSource(
       <div className="list">
         <h3>List Title: {this.props.list.title}</h3>
         <h4>List Order On Board: {this.props.list.order}</h4>
         <div>
-          {this.props.listItems
-            .filter(item => item.listId === this.props.list.id)
-            .map((item, index, filteredArray) => {
-              return (
-                <div key={item.id} className="list-container">
-                  <ListItemContainer
-                    position={index + 1}
-                    listItems={filteredArray}
-                  />
-                </div>
-              )
-            })}
+          {listItems.map((item, index, filteredArray) => {
+            return (
+              <div key={item.id} className="list-container">
+                <ListItemContainer
+                  position={index + 1}
+                  listItems={filteredArray}
+                />
+              </div>
+            )
+          })}
+          <div className="list-item">
+            <ListItemContainer position={listItems.length} />
+          </div>
         </div>
         {/* <ListItemContainer /> */}
       </div>

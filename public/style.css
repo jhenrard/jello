@@ -26,7 +26,7 @@ form div {
 }
 
 .list-card {
-  display: flex;
+  /* display: flex; */
   border: 5px solid black;
 }
 
@@ -37,6 +37,12 @@ form div {
 }
 
 .list-container {
+  display: flex;
+  border: 5px solid black;
+  margin: 10px;
+}
+
+.list-item {
   display: flex;
   border: 5px solid black;
   margin: 10px;

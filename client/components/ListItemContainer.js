@@ -2,21 +2,24 @@ import React from 'react'
 import {connect as connectRedux} from 'react-redux'
 import {DropTarget} from 'react-dnd'
 import {ListItem} from '.'
-import {updateListOrder} from '../store/boardLists'
+import {updateListItemOrder} from '../store/boardListItems'
 import store from '../store'
 
 const containerTarget = {
   drop(props, monitor) {
-    // const lists = store.getState().boardLists
-    // const existingList = lists.reduce((final, elem) => {
-    //   if (elem.order === props.position) {
-    //     return elem
-    //   }
-    //   return final
-    // }, {})
-    // const from = monitor.getItem().list.order
-    // store.dispatch(updateListOrder(monitor.getItem().list, props.position))
-    // store.dispatch(updateListOrder(existingList, from))
+    const listItems = store.getState().boardListItems
+    const existingListItem = listItems.reduce((final, elem) => {
+      if (elem.order === props.position) {
+        return elem
+      }
+      return final
+    }, {})
+    const from = monitor.getItem().listItem.order
+    console.log('from: ', from)
+    store.dispatch(
+      updateListItemOrder(monitor.getItem().listItem, props.position)
+    )
+    store.dispatch(updateListItemOrder(existingListItem, from))
   },
   canDrop(props, monitor) {
     return true
@@ -34,12 +37,14 @@ function collect(connect, monitor) {
 class ListItemContainer extends React.Component {
   render() {
     const styles = this.props.isOver ? 'list-card-hover' : 'list-card'
-    const listItem = this.props.listItems.reduce((final, elem) => {
-      if (elem.order === this.props.position) {
-        return elem
-      }
-      return final
-    }, {})
+    const listItem =
+      this.props.listItems &&
+      this.props.listItems.reduce((final, elem) => {
+        if (elem.order === this.props.position) {
+          return elem
+        }
+        return final
+      }, {})
     console.log('listitemcontainer props: ', this.props)
 
     return this.props.connectDropTarget(

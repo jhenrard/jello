@@ -23,8 +23,12 @@ class ListItem extends React.Component {
     console.log('ListItem props: ', this.props)
     return connectDragSource(
       <div className="list">
-        <h3>Item Title: {this.props.listItem.title}</h3>
-        <h4>Item Description: {this.props.listItem.description}</h4>
+        {this.props.listItem && (
+          <div>
+            <h3>Item Title: {this.props.listItem.title}</h3>
+            <h4>Item Description: {this.props.listItem.description}</h4>
+          </div>
+        )}
       </div>
     )
   }
