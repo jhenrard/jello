@@ -22,11 +22,17 @@ form div {
 
 .board-container {
   display: flex;
+  flex: 1;
+  overflow-x: scroll;
+  /* flex-direction: column; */
+  /* height: 100%; */
+  /* width: 100%; */
   /* border: 5px solid black; */
+  white-space: nowrap;
 }
 
 .list-card {
-  /* display: flex; */
+  display: flex;
   border: 5px solid black;
   margin: 10px;
 }
@@ -38,7 +44,9 @@ form div {
 }
 
 .list-container {
-  display: flex;
+  display: inline-block;
+  flex: 1;
+  overflow: auto;
   border: 5px solid black;
   margin: 10px;
 }

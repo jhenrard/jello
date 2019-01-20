@@ -19,21 +19,26 @@ class AddBoard extends React.Component {
 
   handleSubmit = () => {
     this.props.createBoard(this.props.user.id, this.state.name)
+    this.setState({name: ''})
   }
 
   render() {
     return (
-      <Form onSubmit={this.handleSubmit}>
-        <Form.Group>
-          <Form.Input
-            placeholder="Board title..."
-            name="name"
-            value={this.state.name}
-            onChange={this.handleChange}
-          />
-          <Form.Button content="Create Board" />
-        </Form.Group>
-      </Form>
+      <Card>
+        <Form onSubmit={this.handleSubmit}>
+          <Card.Content>
+            <Card.Header>
+              <Form.Input
+                placeholder="Board title..."
+                name="name"
+                value={this.state.name}
+                onChange={this.handleChange}
+              />
+            </Card.Header>
+            <Form.Button color="blue" content="Create Board" />
+          </Card.Content>
+        </Form>
+      </Card>
     )
   }
 }

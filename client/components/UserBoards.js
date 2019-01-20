@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 import {Card, Button} from 'semantic-ui-react'
 import {fetchUserBoards, createBoard} from '../store/boards'
 import {Link} from 'react-router-dom'
-import Test from './test'
 import AddBoard from './AddBoard'
 
 class UserBoards extends React.Component {
@@ -15,7 +14,6 @@ class UserBoards extends React.Component {
     return (
       <div className="home-container">
         <AddBoard />
-        {/* <Button color="blue" active onClick={() => this.createBoard(this.props.user.id)}>Create Board</Button> */}
         {this.props.boards &&
           this.props.boards.map(board => {
             return (
@@ -24,11 +22,12 @@ class UserBoards extends React.Component {
                   <Card.Header className="card-header">
                     {board.name}
                   </Card.Header>
-                  <Link to={`/boards/${board.id}`}>
-                    <Button active>Open Board</Button>
-                  </Link>
+                  {/* <Link to={`/boards/${board.id}`}> */}
+                  <Button href={`/boards/${board.id}`} active>
+                    Open Board
+                  </Button>
+                  {/* </Link> */}
                 </Card.Content>
-                {/* </Card.Content> */}
               </Card>
             )
           })}
