@@ -8,9 +8,8 @@ const containerTarget = {
   drop(props, monitor) {
     const listItems = store.getState().boardListItems
     const existingListItem = listItems.reduce((final, elem) => {
-      if (elem.order === props.position && elem.listId === props.listId) {
+      if (elem.order === props.position && elem.listId === props.listId)
         return elem
-      }
       return final
     }, {})
     const fromOrderInList = monitor.getItem().listItem.order
@@ -42,7 +41,7 @@ const containerTarget = {
           toList
         )
       )
-      // reorder remaining items in source list -- REFACTOR THIS
+      // reorder remaining items in source list -- REFACTOR THIS - THIS MAKES A LOT OF PUT REQUESTS
       for (let i = 0; i < sourceListItems.length; i++) {
         if (
           sourceListItems[i].order >= fromOrderInList &&
@@ -58,17 +57,17 @@ const containerTarget = {
         }
       }
     }
-  },
-  canDrop(props, monitor) {
-    return true
   }
+  // canDrop(props, monitor) {
+  //   return true
+  // }
 }
 
 function collect(connect, monitor) {
   return {
     connectDropTarget: connect.dropTarget(),
-    isOver: monitor.isOver(),
-    canDrop: monitor.canDrop()
+    isOver: monitor.isOver()
+    // canDrop: monitor.canDrop()
   }
 }
 

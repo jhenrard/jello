@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import UserBoards from './user-boards'
+import UserBoards from './UserBoards'
 
 /**
  * COMPONENT

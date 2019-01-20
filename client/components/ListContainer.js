@@ -20,17 +20,17 @@ const containerTarget = {
       store.dispatch(updateListOrder(monitor.getItem().list, props.position))
       store.dispatch(updateListOrder(existingList, from))
     }
-  },
-  canDrop(props, monitor) {
-    return true
   }
+  // canDrop(props, monitor) {
+  //   return true
+  // }
 }
 
 function collect(connect, monitor) {
   return {
     connectDropTarget: connect.dropTarget(),
-    isOver: monitor.isOver(),
-    canDrop: monitor.canDrop()
+    isOver: monitor.isOver()
+    // canDrop: monitor.canDrop()
   }
 }
 
