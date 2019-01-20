@@ -77,7 +77,7 @@ router.get('/:boardId/users', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const newBoard = await Board.create(
-      {name: 'create board test'},
+      {name: req.body.name},
       {returning: true}
     )
     await BoardAssignment.create({...req.body, boardId: newBoard.id})

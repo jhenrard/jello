@@ -7,7 +7,7 @@ import Routes from './routes'
 
 const App = () => {
   return (
-    <div>
+    <div className="app-container">
       <DragDropContextProvider backend={HTML5Backend}>
         <Navbar />
         <Routes />
