@@ -29,8 +29,8 @@ class List extends React.Component {
 
     return connectDragSource(
       <div className="list">
-        <h3>List Title: {this.props.list.title}</h3>
-        <h4>List Order On Board: {this.props.list.order}</h4>
+        <h3>{this.props.list.title}</h3>
+        {/* <h4>List Order On Board: {this.props.list.order}</h4> */}
         <AddListItem
           listId={this.props.list.id}
           listLength={listItems.length}

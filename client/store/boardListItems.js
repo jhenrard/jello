@@ -46,7 +46,6 @@ export const updateListItemOrder = (incomingListItem, order, listId) => {
     listItem.listId = listId
     const res = await axios.put(`/api/list-items/${listItem.id}`, listItem)
     const {data: updatedListItem} = res
-    console.log('updated list item after db udpate: ', updatedListItem)
     dispatch(updateBoardListItem(updatedListItem))
   }
 }

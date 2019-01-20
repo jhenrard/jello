@@ -21,6 +21,10 @@ const containerTarget = {
     ).length
     const sourceListItems = listItems.filter(item => item.listId === fromList)
 
+    if (existingListItem.id === monitor.getItem().listItem.id) {
+      return
+    }
+
     if (existingListItem.id && existingListItem.listId === fromList) {
       // swap spots if same list
       store.dispatch(
@@ -75,6 +79,7 @@ class ListItemContainer extends React.Component {
       this.props.listItems &&
       this.props.listItems.reduce((final, elem) => {
         if (elem.order === this.props.position) {
+          // could get next in array, would also need to make adding items have correct order value in db - find last in array and add 1 to its .order
           return elem
         }
         return final

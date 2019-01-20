@@ -16,8 +16,10 @@ const containerTarget = {
     }, {})
     const from = monitor.getItem().list.order
 
-    store.dispatch(updateListOrder(monitor.getItem().list, props.position))
-    store.dispatch(updateListOrder(existingList, from))
+    if (from !== props.position) {
+      store.dispatch(updateListOrder(monitor.getItem().list, props.position))
+      store.dispatch(updateListOrder(existingList, from))
+    }
   },
   canDrop(props, monitor) {
     return true
