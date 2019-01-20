@@ -113,3 +113,22 @@ form div {
 .card-header {
   margin: 0px 0px 20px 0px;
 }
+
+.logo {
+  background-color: black;
+  padding: 10px;
+}
+
+.navbar {
+  background-color: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 60px;
+  padding-right: 60px;
+  padding-top: 20px;
+}
+
+.navbar nav {
+  display: flex;
+}
