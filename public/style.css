@@ -70,4 +70,15 @@ form div {
 
 .board-card-container {
   display: flex;
+  align-content: center;
+}
+
+.create-board-button {
+  display: flex;
+  /* padding: 50px; */
+  margin: 25px;
+  background-color: lightblue;
+  cursor: pointer;
+  align-content: center;
+  text-align: center;
 }

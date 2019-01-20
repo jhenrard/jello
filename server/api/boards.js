@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Board, List, ListItem} = require('../db/models')
+const {Board, List, ListItem, BoardAssignment} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -55,6 +55,19 @@ router.get('/:boardId/listItems', async (req, res, next) => {
       }
     })
     res.json(listItems)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.post('/', async (req, res, next) => {
+  try {
+    const newBoard = await Board.create(
+      {name: 'create board test'},
+      {returning: true}
+    )
+    await BoardAssignment.create({...req.body, boardId: newBoard.id})
+    res.json(newBoard)
   } catch (error) {
     next(error)
   }

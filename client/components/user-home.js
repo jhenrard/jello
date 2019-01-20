@@ -13,7 +13,9 @@ export const UserHome = props => {
     <div>
       <h3>Welcome, {email}</h3>
       <p />
-      <UserBoards />
+      <div className="board-card-container">
+        <UserBoards />
+      </div>
     </div>
   )
 }
