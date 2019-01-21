@@ -48,9 +48,9 @@ class ListContainer extends React.Component {
     return this.props.connectDropTarget(
       // <div className={styles}>
       <div>
-        <Card className="list-card">
-          <List list={list} />
-        </Card>
+        {/* <Card className="list-card"> */}
+        <List list={list} />
+        {/* </Card> */}
       </div>
       // </div>
     )

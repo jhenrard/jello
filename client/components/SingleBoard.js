@@ -23,27 +23,27 @@ class SingleBoard extends React.Component {
           {this.props.board.id && <BoardNavbar board={this.props.board} />}
         </div>
         <div className="board-container">
-          {this.props.lists && (
-            <Card.Group>
-              {this.props.lists.map((list, index) => {
-                return (
-                  <div className="card-spacing" key={list.id}>
-                    <Card>
-                      <ListContainer position={index + 1} />
-                    </Card>
-                  </div>
-                )
-              })}
-              <div className="card-spacing">
-                <Card>
-                  <AddList
-                    numOfLists={this.props.lists.length}
-                    boardId={this.props.board.id}
-                  />
-                </Card>
-              </div>
-            </Card.Group>
-          )}
+          {this.props.lists &&
+            // <Card.Group>
+            this.props.lists.map((list, index) => {
+              return (
+                <div className="card-spacing" key={list.id}>
+                  <Card>
+                    <ListContainer position={index + 1} />
+                  </Card>
+                </div>
+              )
+            })}
+          <div className="card-spacing">
+            <Card>
+              <AddList
+                numOfLists={this.props.lists.length}
+                boardId={this.props.board.id}
+              />
+            </Card>
+          </div>
+          {/* </Card.Group> */}
+          {/* )} */}
         </div>
       </div>
     )
