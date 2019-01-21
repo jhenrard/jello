@@ -36,7 +36,7 @@ form div {
 }
 
 .board-container {
-  display: flex;
+  display: inline-block;
   /* flex-grow: 1; */
   /* min-height: 100%; */
 
@@ -44,7 +44,7 @@ form div {
   overflow-x: scroll;
   /* overflow:auto; */
   /* overflow-y: auto; */
-  /* flex-direction: column; */
+  flex-direction: column;
   /* height: 200%; */
   /* width: 100%; */
   /* border: 5px solid black; */

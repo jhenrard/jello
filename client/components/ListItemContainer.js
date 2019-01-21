@@ -85,7 +85,7 @@ class ListItemContainer extends React.Component {
       }, {})
 
     return this.props.connectDropTarget(
-      <div className={styles}>
+      <div className="list-item">
         <ListItem listItem={listItem} />
       </div>
     )
