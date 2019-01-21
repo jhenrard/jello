@@ -7,7 +7,6 @@ import AddListItem from './AddListItem'
 
 const listSource = {
   beginDrag(props) {
-    // console.log('begin drag props: ', props)
     return {
       list: props.list
     }
@@ -33,7 +32,11 @@ class List extends React.Component {
         <h3>{this.props.list.title}</h3>
         <AddListItem
           listId={this.props.list.id}
-          listLength={listItems.length}
+          lastOrder={
+            listItems[0] &&
+            listItems.sort((a, b) => a.order - b.order)[listItems.length - 1]
+              .order
+          }
         />
 
         {listItems.map((item, index, filteredArray) => {

@@ -23,7 +23,7 @@ class AddListItem extends React.Component {
     this.props.addListItem(
       this.state,
       this.props.listId,
-      this.props.listLength + 1
+      this.props.lastOrder + 1
     )
     this.setState({title: ''})
   }
