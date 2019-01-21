@@ -86,3 +86,17 @@ router.post('/', async (req, res, next) => {
     next(error)
   }
 })
+
+router.post('/:boardId/add-user', async (req, res, next) => {
+  try {
+    await BoardAssignment.create({...req.body})
+    const addedUser = await User.findOne({
+      where: {
+        id: req.body.userId
+      }
+    })
+    res.json(addedUser)
+  } catch (error) {
+    next(error)
+  }
+})

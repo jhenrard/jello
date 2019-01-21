@@ -142,8 +142,8 @@ form div {
   justify-content: space-between;
   padding-left: 60px;
   padding-right: 60px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .navbar nav {
@@ -171,12 +171,14 @@ form div {
   justify-content: space-between;
   padding-left: 60px;
   padding-right: 60px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 10px;
+  /* padding-bottom: 20px; */
 }
 
 .board-navbar nav {
   display: flex;
+  padding: 0px;
+  margin: 0px;
 }
 
 .board-navbar-user {

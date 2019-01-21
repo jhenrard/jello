@@ -8,6 +8,7 @@ import boardLists from './boardLists'
 import boardListItems from './boardListItems'
 import boards from './boards'
 import boardUsers from './boardUsers'
+import allUsers from './allUsers'
 
 const reducer = combineReducers({
   user,
@@ -15,7 +16,8 @@ const reducer = combineReducers({
   boardLists,
   boardListItems,
   boards,
-  boardUsers
+  boardUsers,
+  allUsers
 })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))

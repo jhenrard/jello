@@ -33,7 +33,6 @@ export const fetchUserBoards = userId => {
 
 export const createBoard = (userId, name) => {
   return async dispatch => {
-    console.log('name in thunk: ', name)
     const res = await axios.post(`/api/boards`, {name, userId, owner: true})
     const {data: board} = res
     dispatch(createdBoard(board))
