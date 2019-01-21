@@ -5,6 +5,7 @@ import axios from 'axios'
 const GOT_BOARD_LIST_ITEMS = 'GOT_BOARD_LIST_ITEMS'
 const UPDATE_LIST_ITEM = 'UPDATE_LIST_ITEM'
 const ADD_LIST_ITEM = 'ADD_LIST_ITEM'
+const REMOVE_LIST_ITEM = 'REMOVE_LIST_ITEM'
 
 // action creators
 
@@ -26,6 +27,13 @@ const updateBoardListItem = listItem => {
   return {
     type: UPDATE_LIST_ITEM,
     listItem
+  }
+}
+
+const removeListItem = itemId => {
+  return {
+    type: REMOVE_LIST_ITEM,
+    itemId
   }
 }
 
@@ -69,6 +77,13 @@ export const addListItem = (listItem, listId, order) => {
   }
 }
 
+export const removeItem = itemId => {
+  return async dispatch => {
+    dispatch(removeListItem(itemId))
+    await axios.delete(`/api/list-items/${itemId}`)
+  }
+}
+
 // board list items reducer
 
 export default function(state = [], action) {
@@ -85,6 +100,8 @@ export default function(state = [], action) {
       })
     case ADD_LIST_ITEM:
       return [...state, action.listItem]
+    case REMOVE_LIST_ITEM:
+      return state.filter(item => item.id !== action.itemId)
     default:
       return state
   }

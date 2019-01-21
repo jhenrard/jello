@@ -1,7 +1,6 @@
 import React from 'react'
 import {DragSource} from 'react-dnd'
 import {connect as connectRedux} from 'react-redux'
-import {Card} from 'semantic-ui-react'
 import ListItemContainer from './ListItemContainer'
 import AddListItem from './AddListItem'
 

@@ -24,3 +24,14 @@ router.post('/', async (req, res, next) => {
     next(error)
   }
 })
+
+router.delete('/:itemId', async (req, res, next) => {
+  try {
+    await ListItem.destroy({
+      where: {id: req.params.itemId}
+    })
+    res.sendStatus(201)
+  } catch (error) {
+    next(error)
+  }
+})
