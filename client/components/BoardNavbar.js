@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {Form} from 'semantic-ui-react'
 import {fetchBoardUsers} from '../store/boardUsers'
 
 class BoardNavbar extends React.Component {
@@ -20,6 +21,12 @@ class BoardNavbar extends React.Component {
                 </div>
               )
             })}
+          <Form>
+            <Form.Select
+              placeholder="Add a user to this board..."
+              options={[{text: 'test friend', value: 'test friend'}]}
+            />
+          </Form>
         </nav>
       </div>
     )
