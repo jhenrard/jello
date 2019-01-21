@@ -10,15 +10,17 @@ class BoardNavbar extends React.Component {
   render() {
     return (
       <div className="board-navbar">
-        <span>{this.props.board.name}</span>
-        {this.props.boardUsers &&
-          this.props.boardUsers.map(user => {
-            return (
-              <div className="board-navbar-item" key={user.id}>
-                {user.email}
-              </div>
-            )
-          })}
+        <div className="board-navbar-name">{this.props.board.name}</div>
+        <nav>
+          {this.props.boardUsers &&
+            this.props.boardUsers.map(user => {
+              return (
+                <div className="board-navbar-user" key={user.id}>
+                  {user.email}
+                </div>
+              )
+            })}
+        </nav>
       </div>
     )
   }

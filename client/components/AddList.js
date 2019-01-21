@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {Card, Form} from 'semantic-ui-react'
 import {addList} from '../store/boardLists'
 
 class AddList extends React.Component {
@@ -29,18 +30,29 @@ class AddList extends React.Component {
   render() {
     return (
       <div className="add-list">
-        <form onSubmit={this.handleSubmit}>
-          <textarea
-            placeholder="Enter a new list title..."
-            name="title"
-            rows="1"
-            cols="40"
-            value={this.state.title}
-            onChange={this.handleChange}
-          />
-          <button type="submit">Create List</button>
-        </form>
+        <Card>
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Input
+              placeholder="Enter a new list title..."
+              name="title"
+              value={this.state.title}
+              onChange={this.handleChange}
+            />
+            <Form.Button color="yellow" content="Create List" />
+          </Form>
+        </Card>
       </div>
+      //   <form onSubmit={this.handleSubmit}>
+      //     <textarea
+      //       placeholder="Enter a new list title..."
+      //       name="title"
+      //       rows="1"
+      //       cols="40"
+      //       value={this.state.title}
+      //       onChange={this.handleChange}
+      //     />
+      //     <button type="submit">Create List</button>
+      //   </form>
     )
   }
 }

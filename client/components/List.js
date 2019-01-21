@@ -1,6 +1,7 @@
 import React from 'react'
 import {DragSource} from 'react-dnd'
 import {connect as connectRedux} from 'react-redux'
+import {Card} from 'semantic-ui-react'
 import ListItemContainer from './ListItemContainer'
 import AddListItem from './AddListItem'
 
@@ -28,32 +29,54 @@ class List extends React.Component {
     )
 
     return connectDragSource(
-      <div className="list">
+      <div className="list-card">
         <h3>{this.props.list.title}</h3>
-        {/* <h4>List Order On Board: {this.props.list.order}</h4> */}
         <AddListItem
           listId={this.props.list.id}
           listLength={listItems.length}
         />
-        <div>
-          {listItems.map((item, index, filteredArray) => {
-            return (
-              <div key={item.id}>
-                <ListItemContainer
-                  position={index + 1}
-                  listItems={filteredArray}
-                  listId={this.props.list.id}
-                />
-              </div>
-            )
-          })}
-          <div>
-            {!listItems.length && (
-              <ListItemContainer position={1} listId={this.props.list.id} />
-            )}
-          </div>
-        </div>
+
+        {listItems.map((item, index, filteredArray) => {
+          return (
+            <div key={item.id}>
+              <ListItemContainer
+                position={index + 1}
+                listItems={filteredArray}
+                listId={this.props.list.id}
+              />
+            </div>
+          )
+        })}
+        {!listItems.length && (
+          <ListItemContainer position={1} listId={this.props.list.id} />
+        )}
       </div>
+      // <div className="list">
+      //   <h3>{this.props.list.title}</h3>
+      //   {/* <h4>List Order On Board: {this.props.list.order}</h4> */}
+      //   <AddListItem
+      //     listId={this.props.list.id}
+      //     listLength={listItems.length}
+      //   />
+      //   <div>
+      //     {listItems.map((item, index, filteredArray) => {
+      //       return (
+      //         <div key={item.id}>
+      //           <ListItemContainer
+      //             position={index + 1}
+      //             listItems={filteredArray}
+      //             listId={this.props.list.id}
+      //           />
+      //         </div>
+      //       )
+      //     })}
+      //     <div>
+      // {!listItems.length && (
+      //   <ListItemContainer position={1} listId={this.props.list.id} />
+      // )}
+      //     </div>
+      //   </div>
+      // </div>
     )
   }
 }
