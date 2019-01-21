@@ -13,11 +13,11 @@ class AddBoard extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleChange = (event, {name, value}) => {
+  handleChange(event, {name, value}) {
     this.setState({[name]: value})
   }
 
-  handleSubmit = () => {
+  handleSubmit() {
     this.props.createBoard(this.props.user.id, this.state.name)
     this.setState({name: ''})
   }

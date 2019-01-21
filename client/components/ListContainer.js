@@ -37,7 +37,7 @@ function collect(connect, monitor) {
 
 class ListContainer extends React.Component {
   render() {
-    const styles = this.props.isOver ? 'list-card-hover' : 'list-card'
+    // const styles = this.props.isOver ? 'list-card-hover' : 'list-card'
     const list = this.props.lists.reduce((final, elem) => {
       if (elem.order === this.props.position) {
         return elem

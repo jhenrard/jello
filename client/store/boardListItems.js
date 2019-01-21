@@ -50,13 +50,19 @@ export const updateListItemOrder = (incomingListItem, order, listId) => {
   }
 }
 
+export const updateListItem = (itemId, item) => {
+  return async dispatch => {
+    const res = await axios.put(`/api/list-items/${itemId}`, item)
+    const {data: updatedListItem} = res
+    dispatch(updateBoardListItem(updatedListItem))
+  }
+}
+
 export const addListItem = (listItem, listId, order) => {
   return async dispatch => {
     listItem = {...listItem}
     listItem.listId = listId
     listItem.order = order
-    console.log('listItem (req.body) :', listItem)
-    console.log('order passed to thunk: ', order)
     const res = await axios.post(`/api/list-items`, listItem)
     const {data: newListItem} = res
     dispatch(addBoardListItem(newListItem))

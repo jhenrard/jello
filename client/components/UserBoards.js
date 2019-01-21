@@ -1,8 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Card, Button} from 'semantic-ui-react'
-import {fetchUserBoards, createBoard} from '../store/boards'
-import {Link} from 'react-router-dom'
+import {fetchUserBoards} from '../store/boards'
 import AddBoard from './AddBoard'
 
 class UserBoards extends React.Component {
@@ -22,11 +21,9 @@ class UserBoards extends React.Component {
                   <Card.Header className="card-header">
                     {board.name}
                   </Card.Header>
-                  {/* <Link to={`/boards/${board.id}`}> */}
                   <Button href={`/boards/${board.id}`} active>
                     Open Board
                   </Button>
-                  {/* </Link> */}
                 </Card.Content>
               </Card>
             )
