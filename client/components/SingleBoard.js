@@ -17,6 +17,12 @@ class SingleBoard extends React.Component {
   }
 
   render() {
+    const nextOrder = this.props.lists.length
+      ? this.props.lists.sort((a, b) => a.order - b.order)[
+          this.props.lists.length - 1
+        ].order + 1
+      : 1
+
     return (
       <div>
         <div>
@@ -24,7 +30,6 @@ class SingleBoard extends React.Component {
         </div>
         <div className="board-container">
           {this.props.lists &&
-            // <Card.Group>
             this.props.lists.map((list, index) => {
               return (
                 <div className="card-spacing" key={list.id}>
@@ -36,14 +41,9 @@ class SingleBoard extends React.Component {
             })}
           <div className="card-spacing">
             <Card>
-              <AddList
-                numOfLists={this.props.lists.length}
-                boardId={this.props.board.id}
-              />
+              <AddList nextOrder={nextOrder} boardId={this.props.board.id} />
             </Card>
           </div>
-          {/* </Card.Group> */}
-          {/* )} */}
         </div>
       </div>
     )

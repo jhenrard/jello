@@ -25,7 +25,7 @@ class ListItem extends React.Component {
     return connectDragSource(
       <div className="list">
         {this.props.listItem && (
-          <Modal trigger={<h3>{this.props.listItem.title}</h3>}>
+          <Modal closeIcon trigger={<h3>{this.props.listItem.title}</h3>}>
             <Modal.Content>
               {/* <h3>{this.props.listItem.title}</h3>
                 <p>{this.props.listItem.description}</p>

@@ -19,11 +19,7 @@ class AddList extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    this.props.addList(
-      this.state,
-      this.props.boardId,
-      this.props.numOfLists + 1
-    )
+    this.props.addList(this.state, this.props.boardId, this.props.nextOrder)
     this.setState({title: ''})
   }
 
@@ -42,17 +38,6 @@ class AddList extends React.Component {
           </Form>
         </Card>
       </div>
-      //   <form onSubmit={this.handleSubmit}>
-      //     <textarea
-      //       placeholder="Enter a new list title..."
-      //       name="title"
-      //       rows="1"
-      //       cols="40"
-      //       value={this.state.title}
-      //       onChange={this.handleChange}
-      //     />
-      //     <button type="submit">Create List</button>
-      //   </form>
     )
   }
 }

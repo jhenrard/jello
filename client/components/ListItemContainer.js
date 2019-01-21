@@ -47,43 +47,20 @@ const containerTarget = {
       store.dispatch(
         updateListItemOrder(monitor.getItem().listItem, nextOrder, toList)
       )
-      // reorder remaining items in source list -- REFACTOR THIS - THIS MAKES A LOT OF PUT REQUESTS
-      // for (let i = 0; i < sourceListItems.length; i++) {
-      //   if (
-      //     sourceListItems[i].order >= fromOrderInList &&
-      //     sourceListItems[i].id !== monitor.getItem().listItem.id
-      //   ) {
-      //     store.dispatch(
-      //       updateListItemOrder(
-      //         sourceListItems[i],
-      //         sourceListItems[i].order - 1,
-      //         fromList
-      //       )
-      //     )
-      //   }
-      // }
     }
   }
-  // canDrop(props, monitor) {
-  //   return true
-  // }
 }
 
 function collect(connect, monitor) {
   return {
     connectDropTarget: connect.dropTarget(),
     isOver: monitor.isOver()
-    // canDrop: monitor.canDrop()
   }
 }
 
 class ListItemContainer extends React.Component {
   render() {
     const styles = this.props.isOver ? 'list-card-hover' : 'list-item'
-
-    const sortedListItems =
-      this.props.listItems &&
-      this.props.listItems.sort((a, b) => a.order - b.order)
 
     const listItem =
       this.props.listItems &&

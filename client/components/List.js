@@ -1,8 +1,10 @@
 import React from 'react'
 import {DragSource} from 'react-dnd'
 import {connect as connectRedux} from 'react-redux'
+import {Button} from 'semantic-ui-react'
 import ListItemContainer from './ListItemContainer'
 import AddListItem from './AddListItem'
+import {removeList} from '../store/boardLists'
 
 const listSource = {
   beginDrag(props) {
@@ -20,6 +22,15 @@ const collect = (connect, monitor) => {
 }
 
 class List extends React.Component {
+  constructor() {
+    super()
+    this.handleRemove = this.handleRemove.bind(this)
+  }
+
+  handleRemove() {
+    this.props.removeList(this.props.list.id)
+  }
+
   render() {
     const {connectDragSource} = this.props
     const listItems = this.props.listItems.filter(
@@ -49,6 +60,12 @@ class List extends React.Component {
         {!listItems.length && (
           <ListItemContainer position={1} listId={this.props.list.id} />
         )}
+        <Button
+          color="red"
+          content="REMOVE LIST"
+          size="small"
+          onClick={this.handleRemove}
+        />
       </div>
       // <div className="list">
       //   <h3>{this.props.list.title}</h3>
@@ -86,6 +103,12 @@ const mapStateToProps = state => {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    removeList: listId => dispatch(removeList(listId))
+  }
+}
+
 export default DragSource('List', listSource, collect)(
-  connectRedux(mapStateToProps)(List)
+  connectRedux(mapStateToProps, mapDispatchToProps)(List)
 )

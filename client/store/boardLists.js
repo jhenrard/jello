@@ -5,6 +5,7 @@ import axios from 'axios'
 const GOT_BOARD_LISTS = 'GOT_BOARD_LISTS'
 const UPDATE_LIST = 'UPDATE_LIST'
 const ADD_LIST = 'ADD_LIST'
+const DELETE_LIST = 'DELETE_LIST'
 
 // action creators
 
@@ -26,6 +27,13 @@ const addBoardList = list => {
   return {
     type: ADD_LIST,
     list
+  }
+}
+
+const deleteList = listId => {
+  return {
+    type: DELETE_LIST,
+    listId
   }
 }
 
@@ -59,6 +67,13 @@ export const addList = (list, boardId, order) => {
   }
 }
 
+export const removeList = listId => {
+  return async dispatch => {
+    await axios.delete(`/api/lists/${listId}`)
+    dispatch(deleteList(listId))
+  }
+}
+
 // board lists reducer
 
 export default function(state = [], action) {
@@ -75,6 +90,8 @@ export default function(state = [], action) {
       })
     case ADD_LIST:
       return [...state, action.list]
+    case DELETE_LIST:
+      return state.filter(list => list.id !== action.listId)
     default:
       return state
   }
