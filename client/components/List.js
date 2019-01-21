@@ -25,18 +25,15 @@ class List extends React.Component {
     const listItems = this.props.listItems.filter(
       item => item.listId === this.props.list.id
     )
+    const nextOrder = listItems[0]
+      ? listItems.sort((a, b) => a.order - b.order)[listItems.length - 1]
+          .order + 1
+      : 1
 
     return connectDragSource(
       <div className="list-card">
         <h3>{this.props.list.title}</h3>
-        <AddListItem
-          listId={this.props.list.id}
-          lastOrder={
-            listItems[0] &&
-            listItems.sort((a, b) => a.order - b.order)[listItems.length - 1]
-              .order
-          }
-        />
+        <AddListItem listId={this.props.list.id} lastOrder={nextOrder} />
 
         {listItems.map((item, index, filteredArray) => {
           return (

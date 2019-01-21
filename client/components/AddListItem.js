@@ -20,11 +20,7 @@ class AddListItem extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    this.props.addListItem(
-      this.state,
-      this.props.listId,
-      this.props.lastOrder + 1
-    )
+    this.props.addListItem(this.state, this.props.listId, this.props.lastOrder)
     this.setState({title: ''})
   }
 

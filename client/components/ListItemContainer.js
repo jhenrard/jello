@@ -21,28 +21,29 @@ const containerTarget = {
     const fromOrderInList = monitor.getItem().listItem.order
     const fromList = monitor.getItem().listItem.listId
     const toList = props.listId
-    // const listItemsLength = listItems.filter(
-    //   item => item.listId === props.listId
-    // ).length
-    // const sourceListItems = listItems.filter(item => item.listId === fromList)
 
     if (existingListItem.id === monitor.getItem().listItem.id) {
       return
     }
 
+    const nextOrder = sortedListItems[0]
+      ? sortedListItems[sortedListItems.length - 1].order + 1
+      : 1
+
     if (existingListItem.id && existingListItem.listId === fromList) {
       // swap spots if same list
       store.dispatch(
-        updateListItemOrder(monitor.getItem().listItem, props.position, toList)
+        updateListItemOrder(
+          monitor.getItem().listItem,
+          existingListItem.order,
+          toList
+        )
       )
       store.dispatch(
         updateListItemOrder(existingListItem, fromOrderInList, fromList)
       )
     } else {
       // drop at end of target list
-      const nextOrder = sortedListItems[0]
-        ? sortedListItems[sortedListItems.length - 1].order + 1
-        : 1
       store.dispatch(
         updateListItemOrder(monitor.getItem().listItem, nextOrder, toList)
       )
@@ -90,7 +91,6 @@ class ListItemContainer extends React.Component {
         .sort((a, b) => a.order - b.order)
         .reduce((final, elem, index) => {
           if (index + 1 === this.props.position) {
-            // could get next in array, would also need to make adding items have correct order value in db - find last in array and add 1 to its .order
             return elem
           }
           return final
