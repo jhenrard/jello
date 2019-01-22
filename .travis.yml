@@ -16,12 +16,12 @@ install:
 before_script:
   - psql -c 'create database "jello-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
 
-# before_deploy:
-#   - npm run build-client # make the bundle
-#   - rm -rf node_modules # omit from the tarball, since we skip cleanup
-# deploy:
-#   skip_cleanup: true # prevents travis from deleting the build
-#   provider: heroku
-#   app: YOUR-HEROKU-APP-NAME-HERE # see README
-#   api_key:
-#     secure: YOUR-***ENCRYPTED***-API-KEY-HERE # see README
+before_deploy:
+  - npm run build-client # make the bundle
+  - rm -rf node_modules # omit from the tarball, since we skip cleanup
+deploy:
+  skip_cleanup: true # prevents travis from deleting the build
+  provider: heroku
+  app: jello-stackathon # see README
+  api_key:
+    secure: lo0aynhwi6Igm0NmCHQqKo8a4f2r17kkFfrZKiHzLx8XYbZl6vbuGjlmLJm4bV+rRMdb159Ld6U++j/hpwCQzEbYUxUOpF0iA0hkYMV+PItcnH+hgd0RhFeMuv+uvzQmalV4tjye0F01Q5hHG1YI3YFxGvn9sFqkjKhTYc32O7ndXez7GD/WPQRSAfpIrx3gvqWYsJoNMBi+H3AHLuQ9Vedquqe/yBSvNhZcHd3rbswMG6pSU7dwrFdDj+JgN+x+iE1ljaD/CNQXPrcNfYocEV0s74PmdyDgPxLhEPNU6i5VuE7CocVtYf41boB+7GSXhAxavRDJ3nf0wQ9olYHKOP20VqBftFqRgWSccFmmN5zo4xx3wtS/niPyD5wPHv/p/Bxr4LhzTwg2w7dVKv9AMRbMkcA2Rzh7Eih4jf5rE8YPQTS1wL+enNox7dHrVtCq117m304Axl4rkLrEEsGZFGAmFf1Y5jBg4rcHyJhBUaAuuEvb5E3+j1uL7BRdcXduVqCNgHDzSdBT84CqQ6X17aiCSj/1/zzEPuMLxzROZXNNCdUl9YbjDRa6LpTC6HveEAuces955WRRB9w7nDUq1mbfBpAIBKM1DisWkl5ewKqfv3VzBy8njnZActck5Yla8XL4YPfaULlyEa2uFOhLdSwhjdtC0zFiayRjjqB/3B8= # see README
