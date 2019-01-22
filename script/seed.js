@@ -20,8 +20,8 @@ async function seed() {
   console.log(`seeded ${users.length} users`)
 
   const boards = await Promise.all([
-    Board.create({name: 'test board'}),
-    Board.create({name: 'test board 2'})
+    Board.create({name: 'Stackathon Project'}),
+    Board.create({name: 'California Trip Plans'})
   ])
   console.log(`seeded ${boards.length} boards`)
 
@@ -33,36 +33,37 @@ async function seed() {
   console.log(`seeded ${boardAssignments.length} board assignments`)
 
   const lists = await Promise.all([
-    List.create({title: 'test list', order: 1, boardId: 1}),
-    List.create({title: 'test list 2', order: 2, boardId: 1}),
-    List.create({title: 'this is another list', order: 3, boardId: 1}),
-    List.create({title: 'lets make one more', order: 4, boardId: 1})
+    List.create({title: 'Requirements', order: 1, boardId: 1}),
+    List.create({title: 'Technologies', order: 2, boardId: 1}),
+    List.create({title: 'Features', order: 3, boardId: 1}),
+    List.create({title: 'Bugs', order: 4, boardId: 1})
   ])
   await List.create({title: 'fifth list', order: 1, boardId: 2})
   console.log(`seeded ${lists.length} lists`)
 
   const listItems = await Promise.all([
     ListItem.create({
-      title: 'item 1',
-      description: 'description',
+      title: 'Compiles',
+      description: 'The app can be compiled without any errors',
       listId: 1,
       order: 1
     }),
     ListItem.create({
-      title: 'item 2',
-      description: 'another description',
+      title: 'Runs',
+      description:
+        'A user can interact with the app. Some features may be missing, but the app is not completely broken.',
       listId: 1,
       order: 2
     }),
     ListItem.create({
-      title: 'item 3',
-      description: 'item for a second list',
+      title: 'React',
+      description: 'The project will use React on the front end.',
       listId: 2,
       order: 1
     }),
     ListItem.create({
-      title: 'item 4',
-      description: 'this is the third seeded item in list 1',
+      title: 'Hollywood',
+      description: `Let's visit Hollywood.`,
       listId: 5,
       order: 1
     })
